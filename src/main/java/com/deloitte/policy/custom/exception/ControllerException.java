@@ -11,6 +11,12 @@ public class ControllerException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	private String errorCode;
 	private String errorMessage;
+	
+	@Override
+	public synchronized Throwable fillInStackTrace() {
+		return this;
+		
+	}
 
 	public String getErrorCode() {
 		return errorCode;

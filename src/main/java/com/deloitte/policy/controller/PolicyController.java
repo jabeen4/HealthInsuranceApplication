@@ -22,13 +22,26 @@ import com.deloitte.policy.entity.Policy;
 import com.deloitte.policy.service.PolicyService;
 import com.deloitte.policy.service.PolicyServiceImpl;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("/policy")
 public class PolicyController {
 
 	@Autowired
 	private PolicyService policyService;
+	
+	/**
+	 * Adding new Policies on to the list by using POST method
+	 * @param policy
+	 * @return
+	 */
 
+	@Operation(summary = "Add Policy", description = "Adding new policies to the list", tags = "Post")
 	@PostMapping("/addpolicy")
 	public ResponseEntity<?> savePolicies(@RequestBody Policy policy) {
 
@@ -47,6 +60,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "update Policy", description = "updating the existing policy in the list", tags = "Put")
 	@PutMapping("/updatepolicy/{id}")
 	public ResponseEntity<?> updatePolicies(@RequestBody Policy policy, @PathVariable("id") Integer customerId) {
 
@@ -64,6 +78,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "Delete Policy", description = "Delete a policies by id from the list", tags = "Delete")
 	@DeleteMapping("/deletepolicy/{id}")
 	public ResponseEntity<?> deletePolicies(@PathVariable("id") Integer customerId) {
 		try {
@@ -82,6 +97,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "Get all Policies", description = "Getting all policies from the list", tags = "Get")
 	@GetMapping("/allpolicy")
 	public ResponseEntity<?> fetchPolicies() {
 
@@ -103,6 +119,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "Get a Policy by id", description = "Getting a policy by id from the list", tags = "Get")
 	@GetMapping("/policy/{id}")
 	public ResponseEntity<?> getPolicyById(@PathVariable("id") Integer customerId) {
 		try {
@@ -120,6 +137,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "Get a Policy by name", description = "Getting a policy by name from the list", tags = "Get")
 	@GetMapping("/name/{name}")
 	public ResponseEntity<?> getByName(@PathVariable("name") String name) {
 
@@ -133,6 +151,7 @@ public class PolicyController {
 
 	}
 
+	@Operation(summary = "Get a Policy by policy", description = "Getting a policy by policy from the list", tags = "Get")
 	@GetMapping("/policies/{policies}")
 	public ResponseEntity<?> getByPolicies(@PathVariable("policies") String policies) {
 

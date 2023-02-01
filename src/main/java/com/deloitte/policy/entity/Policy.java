@@ -8,7 +8,7 @@ public class Policy {
 
 	
 
-	@Id
+    @Id
 	private Integer customerId;
 	private String name;
 	private String address;
